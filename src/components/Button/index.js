@@ -27,12 +27,13 @@ function Button({
         ...passProps,
     };
 
+    // Remove event listener when btn is disabled
     if (disabled) {
-        Object.keys(props).forEach(key =>{
-            if(key.startsWith('on') && typeof props ==="function"){
+        Object.keys(props).forEach((key) => {
+            if (key.startsWith('on') && typeof props[key] === 'function') {
                 delete props[key];
             }
-        } )
+        });
     }
 
     if (to) {
@@ -56,7 +57,9 @@ function Button({
 
     return (
         <Comp className={classes} {...props}>
-            <span>{children}</span>
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            <span className={cx('title')}>{children}</span>
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );
 }

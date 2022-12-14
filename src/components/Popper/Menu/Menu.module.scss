@@ -1,0 +1,22 @@
+.menu-list {
+    width: 224px;
+    padding-bottom: 8px;
+
+    .menu-item{
+        margin-left: 0;
+    }
+}
+
+.menu-popper{
+    padding-bottom: 8px;
+}
+
+//Menu items
+.menu-item{
+    width: 100%;
+    justify-content: flex-start;
+
+    &:hover{
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}

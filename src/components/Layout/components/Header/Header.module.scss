@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.inner {        
+.inner {
     height: 100%;
     width: 1150px;
     // background-color: #ccc;
@@ -70,7 +70,7 @@
     }
 }
 
-.search-title{
+.search-title {
     font-size: 1.4rem;
     font-weight: 600;
     color: rgba(22, 24, 35, 0.5);
@@ -102,3 +102,11 @@
         color: rgba(22, 24, 35, 0.06);
     }
 }
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    padding: 4px 8px;
+    background-color: transparent;
+}
+
