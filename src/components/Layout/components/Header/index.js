@@ -7,25 +7,25 @@ import Button from '~/components/Button';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faSignOut,
     faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
+// import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/icons';
+import Image from '~/components/Image';
 // import AccountItem from ".";
 
 const cx = classNames.bind(styles);
@@ -66,23 +66,22 @@ console.log(images.logo);
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3]);
-        }, 0);
-    }, []);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setSearchResult([1, 2, 3]);
+    //     }, 0);
+    // }, []);
 
     //handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
-                //Handle change language    
+                //Handle change language
                 break;
             default:
         }
     };
 
-    
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -104,7 +103,7 @@ function Header() {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
             to: '/logout',
-            separate: true, 
+            separate: true,
         },
     ];
 
@@ -120,7 +119,7 @@ function Header() {
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>  
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>Accounts</h4>
                                 <AccountItem />
@@ -139,7 +138,7 @@ function Header() {
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </Tippy>
@@ -147,9 +146,19 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy trigger='click' delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy trigger="click" delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy trigger="click" delay={[0, 200]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy trigger="click" delay={[0, 200]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -162,9 +171,9 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
-                                src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/280034250_1528642660872043_7676230927503220080_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=bZIHPvwqj-MAX94kA8l&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfBUfksmvCi5OQya7fKnbeHMPgT-S2iDpsCGNlWVuxAEzg&oe=63A3414A"
+                                src="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
                                 alt="Nguyen Van A"
                             />
                         ) : (
