@@ -6,9 +6,9 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PropperWrapper } from '~/components/Popper';
 import { useState } from 'react';
 
-const defaultFn = ()=>{
+// const defaultFn = ()=>{
     
-};
+// };
 
 const cx = classNames.bind(styles);
 
