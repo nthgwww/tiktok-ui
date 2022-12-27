@@ -1,9 +1,12 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+// import axios from 'axios';
 import { SearchIcon } from '~/components/Icons';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
+
+import * as searchServices from '~/apiServices/searchServices';
 import styles from './Search.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { useDebounce } from '~/hooks';
@@ -28,22 +31,21 @@ function Search() {
     const inputRef = useRef();
 
     useEffect(() => {
-        if(!debounced.trim()){
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
+        const fetchApi = async () =>{
+            setLoading(true);
 
-        setLoading(true);
+            const result =await searchServices.search(debounced);
+            setSearchResult(result);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`).then((res) =>
-            res.json().then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(()=>{
-                setLoading(false);
-            })
-        );
+            setLoading(false);
+        }
+
+        fetchApi();
+
     }, [debounced]);
 
     const handleHideResult = () => {
@@ -59,7 +61,7 @@ function Search() {
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
                         {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result}/>
+                            <AccountItem key={result.id} data={result} />
                         ))}
                     </PopperWrapper>
                 </div>
