@@ -9,7 +9,8 @@
     width: 1150px;
     justify-content: space-around;
     display: flex;
-    padding: 0 var(--default-layout-horizontal-spacer   );
+    padding: 0 var(--default-layout-horizontal-spacer);
+    margin-top: var(--default-layout-header-height);
 }
 
 .content {

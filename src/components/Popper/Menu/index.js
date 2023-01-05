@@ -6,13 +6,11 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PropperWrapper } from '~/components/Popper';
 import { useState } from 'react';
 
-// const defaultFn = ()=>{
-
-// };
+const defaultFn = () => {};
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], hideOnClick=false, onChange }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn, ...passProps }) {
     const [history, setHistory] = useState([{ data: items }]);
     //lay ra trang thu 1 menu
     const current = history[history.length - 1];
@@ -55,11 +53,12 @@ function Menu({ children, items = [], hideOnClick=false, onChange }) {
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-scrollable')}>{renderItems()}</div>
                     </PropperWrapper>
                 </div>
             )}
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            {...passProps}
         >
             {children}
         </Tippy>

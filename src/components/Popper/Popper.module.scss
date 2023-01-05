@@ -1,4 +1,6 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     background: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 12%) 0 2px 12px;
